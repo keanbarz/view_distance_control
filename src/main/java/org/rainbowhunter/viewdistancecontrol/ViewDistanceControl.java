@@ -5,7 +5,7 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.rainbowhunter.viewdistancecontrol.commands.VdcCommand;
-import org.rainbowhunter.viewdistancecontrol.listeners.CmiAfkListener;
+import org.rainbowhunter.viewdistancecontrol.listeners.CMIAfkListener;
 import org.rainbowhunter.viewdistancecontrol.listeners.EssentialsAfkListener;
 import org.rainbowhunter.viewdistancecontrol.listeners.LuckPermsListener;
 import org.rainbowhunter.viewdistancecontrol.listeners.PlayerListener;
