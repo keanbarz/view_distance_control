@@ -15,11 +15,13 @@ repositories {
     maven("https://repo.essentialsx.net/releases/")
     maven("https://repo.essentialsx.net/snapshots/")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+    maven("https://jitpack.io")
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:26.1.2.build.+")
     compileOnly("net.luckperms:api:5.4")
+    compileOnly("com.github.Zrips:CMI-API:9.8.6.4")
     compileOnly("net.essentialsx:EssentialsX:2.21.2") {
         exclude(group = "io.papermc.paper")
         exclude(group = "org.spigotmc")

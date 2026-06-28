@@ -5,7 +5,8 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.rainbowhunter.viewdistancecontrol.commands.VdcCommand;
-import org.rainbowhunter.viewdistancecontrol.listeners.AfkListener;
+import org.rainbowhunter.viewdistancecontrol.listeners.CmiAfkListener;
+import org.rainbowhunter.viewdistancecontrol.listeners.EssentialsAfkListener;
 import org.rainbowhunter.viewdistancecontrol.listeners.LuckPermsListener;
 import org.rainbowhunter.viewdistancecontrol.listeners.PlayerListener;
 
@@ -31,7 +32,7 @@ public class ViewDistanceControl extends JavaPlugin {
         viewDistanceManager = new ViewDistanceManager(this, configManager);
 
         getServer().getPluginManager().registerEvents(new PlayerListener(this, configManager, viewDistanceManager), this);
-        getServer().getPluginManager().registerEvents(new AfkListener(this, configManager, viewDistanceManager), this);
+        registerAfkListener(configManager);
         luckPermsListener = new LuckPermsListener(this, configManager, luckPerms, viewDistanceManager);
         luckPermsListener.register();
 
@@ -43,6 +44,33 @@ public class ViewDistanceControl extends JavaPlugin {
         }
 
         new VdcPlaceholderExpansion(this).register();
+    }
+
+    private void registerAfkListener(ConfigManager configManager) {
+        boolean cmiEnabled = getServer().getPluginManager().isPluginEnabled("CMI");
+        boolean essentialsEnabled = getServer().getPluginManager().isPluginEnabled("Essentials");
+
+        if (cmiEnabled) {
+            getServer().getPluginManager().registerEvents(
+                    new CmiAfkListener(this, configManager, viewDistanceManager),
+                    this
+            );
+
+            getLogger().info("Using CMI AFK integration.");
+            return;
+        }
+
+        if (essentialsEnabled) {
+            getServer().getPluginManager().registerEvents(
+                    new EssentialsAfkListener(this, configManager, viewDistanceManager),
+                    this
+            );
+
+            getLogger().info("Using EssentialsX AFK integration.");
+            return;
+        }
+
+        getLogger().warning("Neither CMI nor EssentialsX was found. AFK view distance changes will not work.");
     }
 
     @Override

@@ -7,8 +7,11 @@ authors:
   - RainbowHunter
 depend:
   - LuckPerms
-  - Essentials
   - PlaceholderAPI
+
+softdepend:
+  - CMI
+  - Essentials
 
 commands:
   vdc:
