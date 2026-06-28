@@ -11,11 +11,44 @@ java {
 
 repositories {
     mavenCentral()
-    maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://repo.essentialsx.net/releases/")
-    maven("https://repo.essentialsx.net/snapshots/")
-    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
-    maven("https://jitpack.io")
+
+    maven("https://repo.papermc.io/repository/maven-public/") {
+        content {
+            includeGroup("io.papermc.paper")
+            includeGroup("io.papermc")
+        }
+    }
+
+    maven("https://repo.aikar.co/nexus/content/repositories/aikar/") {
+    	content {
+        	includeGroup("net.md-5")
+    	}
+    }
+
+    maven("https://repo.loohpjames.com/repository") {
+    	content {
+        	includeGroup("com.mojang")
+    	}
+    }
+
+    maven("https://repo.essentialsx.net/releases/") {
+        content {
+            includeGroup("net.essentialsx")
+        }
+    }
+
+    maven("https://repo.essentialsx.net/snapshots/") {
+        content {
+            includeGroup("net.essentialsx")
+        }
+    }
+
+    maven("https://jitpack.io") {
+        content {
+            includeGroup("com.github.Zrips")
+            includeGroup("com.github.placeholderapi")
+        }
+    }
 }
 
 dependencies {
@@ -26,10 +59,12 @@ dependencies {
         exclude(group = "io.papermc.paper")
         exclude(group = "org.spigotmc")
     }
-    compileOnly("me.clip:placeholderapi:2.11.6") {
+    compileOnly("com.github.placeholderapi:placeholderapi:2.11.6") {
         exclude(group = "io.papermc.paper")
         exclude(group = "org.spigotmc")
     }
+    compileOnly("net.md-5:bungeecord-chat:1.21-R0.2-deprecated+build.21")
+    compileOnly("io.papermc:paperlib:1.0.6")
 
     testImplementation("io.papermc.paper:paper-api:26.1.2.build.+")
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
