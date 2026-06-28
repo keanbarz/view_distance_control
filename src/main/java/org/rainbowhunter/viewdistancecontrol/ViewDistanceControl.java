@@ -52,7 +52,7 @@ public class ViewDistanceControl extends JavaPlugin {
 
         if (cmiEnabled) {
             getServer().getPluginManager().registerEvents(
-                    new CmiAfkListener(this, configManager, viewDistanceManager),
+                    new CMIAfkListener(this, configManager, viewDistanceManager),
                     this
             );
 

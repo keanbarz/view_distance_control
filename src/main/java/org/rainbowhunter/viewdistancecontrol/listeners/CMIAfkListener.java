@@ -11,13 +11,13 @@ import org.rainbowhunter.viewdistancecontrol.ViewDistanceManager;
 
 import java.util.logging.Logger;
 
-public class CmiAfkListener implements Listener {
+public class CMIAfkListener implements Listener {
 
     private final ViewDistanceManager viewDistanceManager;
     private final ConfigManager config;
     private final Logger logger;
 
-    public CmiAfkListener(JavaPlugin plugin, ConfigManager config, ViewDistanceManager viewDistanceManager) {
+    public CMIAfkListener(JavaPlugin plugin, ConfigManager config, ViewDistanceManager viewDistanceManager) {
         this.viewDistanceManager = viewDistanceManager;
         this.config = config;
         this.logger = plugin.getLogger();
