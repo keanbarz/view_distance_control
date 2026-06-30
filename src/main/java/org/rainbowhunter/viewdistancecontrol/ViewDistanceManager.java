@@ -149,19 +149,32 @@ public class ViewDistanceManager {
         return highest;
     }
 
-    // Returns the lowest max.<N> value, or -1 if no cap is set.
+    // Returns the highest max.<N> value, or -1 if no cap is set.
     private int getCapDistance(Player player) {
-        int lowest = -1;
-        for (PermissionAttachmentInfo info : player.getEffectivePermissions()) {
-            if (!info.getValue()) continue;
-            String node = info.getPermission();
-            if (!node.startsWith(MAX_PREFIX)) continue;
+        int highest = -1;
+        String prefix = "viewdistancecontrol.max.";
+
+        for (PermissionAttachmentInfo permissionInfo : player.getEffectivePermissions()) {
+            if (!permissionInfo.getValue()) {
+                continue;
+            }
+
+            String permission = permissionInfo.getPermission();
+
+            if (!permission.startsWith(prefix)) {
+                continue;
+            }
+
             try {
-                int val = Integer.parseInt(node.substring(MAX_PREFIX.length()));
-                if (lowest < 0 || val < lowest) lowest = val;
+                int value = Integer.parseInt(permission.substring(prefix.length()));
+
+                if (value > highest) {
+                    highest = value;
+                }
             } catch (NumberFormatException ignored) {
             }
         }
-        return lowest;
+
+        return highest;
     }
 }

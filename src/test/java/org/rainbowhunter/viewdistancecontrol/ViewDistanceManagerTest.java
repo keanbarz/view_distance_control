@@ -185,14 +185,14 @@ class ViewDistanceManagerTest {
     }
 
     @Test
-    void multipleMaxCaps_lowestWins() {
+    void multipleMaxCaps_highestWins() {
         when(player.getEffectivePermissions()).thenReturn(Set.of(
                 perm("viewdistancecontrol.default.20"),
                 perm("viewdistancecontrol.max.10"),
                 perm("viewdistancecontrol.max.6")
         ));
         manager.applyViewDistance(player);
-        verify(player).setSendViewDistance(6);
+        verify(player).setSendViewDistance(10);
     }
 
     @Test
